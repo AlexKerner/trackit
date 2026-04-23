@@ -11,6 +11,12 @@ export default function Layout() {
   const styles = createStyles(theme);
 
   const pathname = usePathname();
+
+  function isActive(route: string) {
+    if (pathname === "/") return route === "/home";
+    return pathname === route || pathname.startsWith(route + "/");
+  }
+  console.log(pathname);
   return (
     <Tabs>
       <ScreenContainer>
@@ -23,14 +29,14 @@ export default function Layout() {
             name="package-variant-closed"
             size={25}
             style={
-              pathname === "/home"
+              isActive("/home")
                 ? { color: theme.primary }
                 : { color: theme.variant }
             }
           />
           <AppText
             style={
-              pathname === "/home"
+              isActive("/home")
                 ? { color: theme.primary, fontFamily: theme.fonts.semiBold }
                 : { color: theme.variant }
             }
@@ -43,14 +49,14 @@ export default function Layout() {
             name="view-dashboard-outline"
             size={25}
             style={
-              pathname === "/dashboard"
+              isActive("/dashboard")
                 ? { color: theme.primary }
                 : { color: theme.variant }
             }
           />
           <AppText
             style={
-              pathname === "/dashboard"
+              isActive("/dashboard")
                 ? { color: theme.primary, fontFamily: theme.fonts.semiBold }
                 : { color: theme.variant }
             }
@@ -63,14 +69,14 @@ export default function Layout() {
             name="map-marker-outline"
             size={25}
             style={
-              pathname === "/cep"
+              isActive("/cep")
                 ? { color: theme.primary }
                 : { color: theme.variant }
             }
           />
           <AppText
             style={
-              pathname === "/cep"
+              isActive("/cep")
                 ? { color: theme.primary, fontFamily: theme.fonts.semiBold }
                 : { color: theme.variant }
             }
