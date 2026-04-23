@@ -8,7 +8,8 @@ export const colors = {
     variant: "#464554",
     green: "#10B981",
     greenContrast: "#00442D",
-    error: "#EF4444"
+    error: "#EF4444",
+    disable: "#DFE3E7"
   },
   dark: {
     primary: "#4338CA",
@@ -19,6 +20,7 @@ export const colors = {
     variant: "#94A3B8",
     green: "#4EDEA3",
     greenContrast: "#00442D",
-    error: "#FB7185"
+    error: "#FB7185",
+    disable: "#333D4D"
   }
 }

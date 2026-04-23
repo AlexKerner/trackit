@@ -8,7 +8,7 @@ export const createStyles = (theme: any) => StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 8,
     backgroundColor: theme.surface,
     borderRadius: 50,
     elevation: 3

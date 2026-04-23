@@ -21,8 +21,8 @@ export default function Layout() {
 
   return (
     <ThemeProvider>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="/(tabs)" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );
