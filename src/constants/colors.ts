@@ -1,6 +1,3 @@
-
-
-
 export const colors = {
   light: {
     primary: "#2A14B4",
