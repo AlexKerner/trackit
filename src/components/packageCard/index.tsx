@@ -1,4 +1,5 @@
 import { useTheme } from "@/src/theme/themeProvider";
+import { formatDate } from "@/src/utils/formatDate";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Pressable, PressableProps, View } from "react-native";
 import { AppText } from "../appText";
@@ -52,49 +53,41 @@ export default function PackageCard({
   } as const;
   const style = statusStyle[status];
 
-  function formatDate(date: string) {
-    return new Date(date).toLocaleString("pt-BR", {
-      day: "2-digit",
-      month: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  }
-
   return (
     <View
       style={[styles.container, { backgroundColor: style.backgroundColor }]}
     >
-      <View style={styles.content}>
-        <View>
-          <View style={[styles.icon, { backgroundColor: style.bgIcon }]}>
-            <MaterialCommunityIcons
-              name={style.icon}
-              size={22}
-              color={style.iconColor}
-            />
+      <Pressable onPress={onDetails}>
+        <View style={styles.content}>
+          <View>
+            <View style={[styles.icon, { backgroundColor: style.bgIcon }]}>
+              <MaterialCommunityIcons
+                name={style.icon}
+                size={22}
+                color={style.iconColor}
+              />
+            </View>
+          </View>
+          <View style={[styles.status, { backgroundColor: style.statusColor }]}>
+            <AppText style={styles.statusText}>{statusMap[status]}</AppText>
           </View>
         </View>
-        <View style={[styles.status, { backgroundColor: style.statusColor }]}>
-          <AppText style={styles.statusText}>{statusMap[status]}</AppText>
+        <View>
+          <AppText style={styles.title} numberOfLines={2} ellipsizeMode="tail">
+            {name}
+          </AppText>
         </View>
-      </View>
-      <View>
-        <AppText style={styles.title} numberOfLines={2} ellipsizeMode="tail">
-          {name}
-        </AppText>
-      </View>
 
-      <View style={styles.footer}>
-        <AppText style={styles.date}>{formatDate(date)}</AppText>
-        <Pressable onPress={onDetails}>
+        <View style={styles.footer}>
+          <AppText style={styles.date}>{formatDate(date)}</AppText>
+
           <MaterialCommunityIcons
             name="chevron-right"
             size={25}
             color={theme.font}
           />
-        </Pressable>
-      </View>
+        </View>
+      </Pressable>
     </View>
   );
 }

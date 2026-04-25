@@ -1,13 +1,18 @@
 import { AppText } from "@/src/components/appText";
 import FloatButton from "@/src/components/floatButton";
 import Header from "@/src/components/header";
+import ModalPackage from "@/src/components/modalPackage";
 import PackageCard from "@/src/components/packageCard";
 import { mockPackages } from "@/src/services/mock/mock";
+import { Package } from "@/src/services/packageModel/packageModel";
 import { createStyles } from "@/src/styles/home/styles";
 import { useTheme } from "@/src/theme/themeProvider";
+import { useState } from "react";
 import { FlatList, View } from "react-native";
 
 export default function Home() {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
   const { theme } = useTheme();
   const styles = createStyles(theme);
   const packages = mockPackages;
@@ -40,9 +45,22 @@ export default function Home() {
               status={item.status}
               date={item.date}
               description={item.description}
-              onDetails={() => console.log("detalhes")}
+              onDetails={() => {
+                setShowModal(true);
+                setSelectedPackage(item);
+              }}
             />
           )}
+        />
+        <ModalPackage
+          visible={showModal}
+          closeModal={() => setShowModal(false)}
+          title={selectedPackage?.nickname ?? "Sem nome."}
+          description={selectedPackage?.description ?? "Sem descrição."}
+          status={selectedPackage?.status ?? "in_transit"}
+          location={selectedPackage?.location ?? "Sem localização."}
+          date={selectedPackage?.date ?? "Sem data."}
+          code={selectedPackage?.code ?? "Sem código."}
         />
       </View>
     </>
