@@ -6,6 +6,7 @@ export const createStyles = (theme: any) => StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 20,
+    backgroundColor: theme.bg
   },
   header: {
     marginVertical: 40,
@@ -23,9 +24,10 @@ export const createStyles = (theme: any) => StyleSheet.create({
     lineHeight: 40
   },
   packages: {
-    maxHeight: 450
+    maxHeight: 450,
   },
   packageContent: {
-    gap: 16
+    gap: 16,
+    paddingBottom: 5
   }
 })
