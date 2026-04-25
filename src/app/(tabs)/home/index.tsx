@@ -7,6 +7,7 @@ import { mockPackages } from "@/src/services/mock/mock";
 import { Package } from "@/src/services/packageModel/packageModel";
 import { createStyles } from "@/src/styles/home/styles";
 import { useTheme } from "@/src/theme/themeProvider";
+import { router } from "expo-router";
 import { useState } from "react";
 import { FlatList, View } from "react-native";
 
@@ -26,8 +27,8 @@ export default function Home() {
   });
   return (
     <>
-      <FloatButton />
       <View style={styles.container}>
+        <FloatButton onPress={() => router.navigate("/addPackage")} />
         <Header />
         <View style={styles.header}>
           <AppText style={styles.subtitle}>ENCOMENDAS ATIVAS</AppText>

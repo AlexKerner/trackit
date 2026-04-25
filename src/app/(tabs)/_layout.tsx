@@ -1,5 +1,4 @@
 import { AppText } from "@/src/components/appText";
-import { ScreenContainer } from "@/src/components/screenContainer";
 import { createStyles } from "@/src/styles/tabs/styles";
 import { useTheme } from "@/src/theme/themeProvider";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -19,9 +18,7 @@ export default function Layout() {
   console.log(pathname);
   return (
     <Tabs>
-      <ScreenContainer>
-        <TabSlot />
-      </ScreenContainer>
+      <TabSlot />
 
       <TabList style={styles.container}>
         <TabTrigger name="home" href="/home" style={styles.tabItem}>

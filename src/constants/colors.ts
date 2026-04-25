@@ -6,7 +6,7 @@ export const colors = {
     font: "#171C1F",
     fontContrast: "#FFFFFF",
     variant: "#464554",
-    variant2: "#464554",
+    variant2: "#fff",
     green: "#10B981",
     greenContrast: "#00442D",
     error: "#EF4444",
