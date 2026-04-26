@@ -5,8 +5,9 @@ export const createStyles = (theme: any) => StyleSheet.create({
   container: {
     width: "100%",
     display: "flex",
-    justifyContent: "center",
-    alignItems: "flex-start",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingTop: 10
   },
   title: {

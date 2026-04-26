@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { ThemeProvider, useTheme } from "../theme/themeProvider";
 
 import {
@@ -7,13 +7,15 @@ import {
   Poppins_700Bold,
   useFonts,
 } from "@expo-google-fonts/poppins";
+import { Stack } from "expo-router";
 import { View } from "react-native";
 
 function RootLayoutNav() {
-  const { theme } = useTheme();
+  const { theme, mode } = useTheme();
 
   return (
     <View style={{ flex: 1, backgroundColor: theme.bg }}>
+      <StatusBar style={mode === "dark" ? "light" : "dark"} />
       <Stack
         screenOptions={{
           headerShown: false,

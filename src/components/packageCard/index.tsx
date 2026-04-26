@@ -35,6 +35,8 @@ export default function PackageCard({
       bgIcon: theme.variant,
       backgroundColor: theme.bg,
       statusColor: theme.disable,
+      arrowIconColor: theme.font,
+      titleColor: theme.font,
     },
     in_transit: {
       icon: "package-variant-closed",
@@ -42,6 +44,8 @@ export default function PackageCard({
       bgIcon: theme.primary,
       backgroundColor: theme.surface,
       statusColor: theme.variant,
+      arrowIconColor: theme.font,
+      titleColor: theme.font,
     },
     out_for_delivery: {
       icon: "motorbike",
@@ -49,6 +53,8 @@ export default function PackageCard({
       bgIcon: theme.green,
       backgroundColor: theme.primary,
       statusColor: "#665cd0",
+      arrowIconColor: "#FFF",
+      titleColor: "#FFF",
     },
   } as const;
   const style = statusStyle[status];
@@ -73,7 +79,11 @@ export default function PackageCard({
           </View>
         </View>
         <View>
-          <AppText style={styles.title} numberOfLines={2} ellipsizeMode="tail">
+          <AppText
+            style={[styles.title, { color: style.titleColor }]}
+            numberOfLines={2}
+            ellipsizeMode="tail"
+          >
             {name}
           </AppText>
         </View>
@@ -84,7 +94,7 @@ export default function PackageCard({
           <MaterialCommunityIcons
             name="chevron-right"
             size={25}
-            color={theme.font}
+            color={style.arrowIconColor}
           />
         </View>
       </Pressable>
