@@ -30,13 +30,12 @@ export const createStyles = (theme: any) => StyleSheet.create({
   statusText: {
     fontSize: 10,
     lineHeight: 14,
-    color: theme.font,
+    color: "#FFF",
     fontFamily: theme.fonts.semiBold
   },
   title: {
     fontSize: 20,
     fontFamily: theme.fonts.semiBold,
-    color: theme.font,
     maxWidth: 210
   },
   footer: {
@@ -47,6 +46,6 @@ export const createStyles = (theme: any) => StyleSheet.create({
     paddingVertical: 10
   },
   date: {
-    color: theme.variant
+    color: "#94A3B8"
   }
 })
