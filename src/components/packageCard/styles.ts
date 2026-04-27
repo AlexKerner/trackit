@@ -7,7 +7,7 @@ export const createStyles = (theme: any) => StyleSheet.create({
     paddingHorizontal: 15,
     paddingTop: 20,
     maxHeight: 160,
-    elevation: 3
+    elevation: 1
   },
   content: {
     display: "flex",

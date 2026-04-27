@@ -34,7 +34,7 @@ export default function PackageCard({
       iconColor: theme.disable,
       bgIcon: theme.variant,
       backgroundColor: theme.bg,
-      statusColor: theme.disable,
+      statusColor: theme.variant,
       arrowIconColor: theme.font,
       titleColor: theme.font,
     },

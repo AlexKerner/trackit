@@ -27,7 +27,7 @@ export const createStyles = (theme: any) => StyleSheet.create({
     maxHeight: 450,
   },
   packageContent: {
-    gap: 16,
+    gap: 12,
     paddingBottom: 5
   }
 })
