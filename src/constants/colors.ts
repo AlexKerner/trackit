@@ -5,7 +5,7 @@ export const colors = {
     surface: "#FFFFFF",
     font: "#171C1F",
     fontContrast: "#FFFFFF",
-    variant: "#464554",
+    variant: "#94A3B8",
     variant2: "#fff",
     green: "#10B981",
     greenContrast: "#00442D",

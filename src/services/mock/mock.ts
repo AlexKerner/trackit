@@ -1,5 +1,28 @@
 import { Package } from "../packageModel/packageModel";
 
+export const mockCep = {
+  cep: "04431170",
+  status: "found",
+  success: true,
+  data: {
+    cep: "04431170",
+    uf: "SP",
+    numeroLocalidade: 96681,
+    localidade: "São Paulo",
+    logradouro: "Rua Gabriela Besanzoni-Lage",
+    tipoLogradouro: "Rua",
+    nomeLogradouro: "Gabriela Besanzoni-Lage",
+    abreviatura: "R Gabriela Besanzoni-Lage",
+    bairro: "Jardim Selma",
+    nomeMunicipio: "São Paulo",
+    localidadeSuperior: "São Paulo",
+    tipoCEP: 2,
+    clique: "N",
+  },
+  cached: false,
+  message: "CEP consultado com sucesso na API dos Correios.",
+};
+
 export const mockPackages: Package[] = [
   {
     id: "1",
