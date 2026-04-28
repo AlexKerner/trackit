@@ -1,4 +1,5 @@
 import { AppText } from "@/src/components/appText";
+import EmptyState from "@/src/components/emptyState";
 import Header from "@/src/components/header";
 import RecentCard from "@/src/components/recentCard";
 import { mockPackages } from "@/src/services/mock/mock";
@@ -111,9 +112,7 @@ export default function Dashboard() {
                 <AppText style={styles.recentText}>Atividade Recente</AppText>
               </>
             ) : (
-              <AppText style={styles.emptyText}>
-                Você ainda não tem encomendas.
-              </AppText>
+              <EmptyState />
             )}
           </>
         }
