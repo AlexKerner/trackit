@@ -1,6 +1,3 @@
-import { StatusBar } from "expo-status-bar";
-import { ThemeProvider, useTheme } from "../theme/themeProvider";
-
 import {
   Poppins_400Regular,
   Poppins_600SemiBold,
@@ -8,7 +5,10 @@ import {
   useFonts,
 } from "@expo-google-fonts/poppins";
 import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
+import Toast from "react-native-toast-message";
+import { ThemeProvider, useTheme } from "../theme/themeProvider";
 
 function RootLayoutNav() {
   const { theme, mode } = useTheme();
@@ -46,6 +46,7 @@ export default function Layout() {
   return (
     <ThemeProvider>
       <RootLayoutNav />
+      <Toast />
     </ThemeProvider>
   );
 }
