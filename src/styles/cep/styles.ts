@@ -57,6 +57,7 @@ export const createStyles = (theme: any) => StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 50,
+    width: 100
   },
   buttonText: {
     zIndex: 99,
@@ -72,7 +73,7 @@ export const createStyles = (theme: any) => StyleSheet.create({
     paddingVertical: 20,
     maxHeight: 160,
     marginBottom: 15,
-    borderBottomWidth: .2,
+    borderWidth: .1,
   },
   cardTitle: {
     color: theme.variant,
