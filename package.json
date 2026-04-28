@@ -13,11 +13,8 @@
     "@expo/vector-icons": "^15.0.3",
     "@react-native-async-storage/async-storage": "2.2.0",
     "@react-navigation/native": "^7.1.8",
-<<<<<<< Updated upstream
-=======
     "axios": "^1.15.2",
     "date-fns": "^4.1.0",
->>>>>>> Stashed changes
     "expo": "~54.0.33",
     "expo-blur": "~15.0.8",
     "expo-constants": "~18.0.13",
