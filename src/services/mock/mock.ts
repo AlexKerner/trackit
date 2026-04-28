@@ -31,7 +31,7 @@ export const mockPackages: Package[] = [
     status: "delivered",
     description: "Objeto entregue ao destinatário",
     location: "São Paulo/SP",
-    date: "2026-01-15T14:30:00.000Z",
+    date: "2026-04-17T14:30:00.000Z",
   },
   {
     id: "2",
@@ -40,7 +40,7 @@ export const mockPackages: Package[] = [
     status: "out_for_delivery",
     description: "Saiu para entrega",
     location: "Fortaleza/CE",
-    date: "2026-01-20T08:00:00.000Z",
+    date: "2026-04-27T24:00:00.000Z",
   },
   {
     id: "3",
@@ -49,7 +49,7 @@ export const mockPackages: Package[] = [
     status: "in_transit",
     description: "Objeto em trânsito",
     location: "Recife/PE",
-    date: "2026-01-18T10:00:00.000Z",
+    date: "2026-03-20T10:00:00.000Z",
   },
   {
     id: "4",

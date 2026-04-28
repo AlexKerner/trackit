@@ -2,6 +2,7 @@ export const colors = {
   light: {
     primary: "#2A14B4",
     bg: "#F6FAFE",
+    bgIcon: "#c3c0ff3c",
     surface: "#FFFFFF",
     font: "#171C1F",
     fontContrast: "#FFFFFF",
@@ -15,6 +16,7 @@ export const colors = {
   dark: {
     primary: "#4338CA",
     bg: "#0F172A",
+    bgIcon: "#c3c0ff3c",
     surface: "#1E293B",
     font: "#F6FAFE",
     fontContrast: "#FFFFFF",
