@@ -1,4 +1,5 @@
 import { AppText } from "@/src/components/appText";
+import EmptyState from "@/src/components/emptyState";
 import FloatButton from "@/src/components/floatButton";
 import Header from "@/src/components/header";
 import ModalPackage from "@/src/components/modalPackage";
@@ -34,25 +35,29 @@ export default function Home() {
           <AppText style={styles.subtitle}>ENCOMENDAS ATIVAS</AppText>
           <AppText style={styles.title}>{packages.length} Pacotes</AppText>
         </View>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={sortedPackages}
-          keyExtractor={(item) => item.id}
-          style={styles.packages}
-          contentContainerStyle={styles.packageContent}
-          renderItem={({ item }) => (
-            <PackageCard
-              name={item.nickname}
-              status={item.status}
-              date={item.date}
-              description={item.description}
-              onDetails={() => {
-                setShowModal(true);
-                setSelectedPackage(item);
-              }}
-            />
-          )}
-        />
+        {packages.length > 0 ? (
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={sortedPackages}
+            keyExtractor={(item) => item.id}
+            style={styles.packages}
+            contentContainerStyle={styles.packageContent}
+            renderItem={({ item }) => (
+              <PackageCard
+                name={item.nickname}
+                status={item.status}
+                date={item.date}
+                description={item.description}
+                onDetails={() => {
+                  setShowModal(true);
+                  setSelectedPackage(item);
+                }}
+              />
+            )}
+          />
+        ) : (
+          <EmptyState />
+        )}
         <ModalPackage
           visible={showModal}
           closeModal={() => setShowModal(false)}

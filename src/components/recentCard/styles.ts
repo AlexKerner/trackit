@@ -38,6 +38,7 @@ export const createStyles = (theme: any) => StyleSheet.create({
   },
   status: {
     color: theme.variant,
+    fontSize: 13
   },
   location: {
     color: theme.variant,
@@ -46,6 +47,6 @@ export const createStyles = (theme: any) => StyleSheet.create({
   date: {
     color: theme.variant,
     fontFamily: theme.fonts.semiBold,
-    fontSize: 12
+    fontSize: 11
   }
 })
