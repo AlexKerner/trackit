@@ -9,7 +9,7 @@ export const createStyles = (theme: any) => StyleSheet.create({
     maxHeight: "83%",
   },
   title: {
-    marginTop: 25,
+    marginTop: 30,
     marginBottom: 10,
     fontSize: 30,
     color: theme.font,
