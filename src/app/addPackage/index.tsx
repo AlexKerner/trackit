@@ -1,4 +1,10 @@
 import { AppText } from "@/src/components/appText";
+import { getTracking } from "@/src/services/axios/api/trackingService";
+import {
+  Package,
+  TrackingResponse,
+} from "@/src/services/packageModel/packageModel";
+import { packageStorage } from "@/src/storage/packageStore";
 import { createStyles } from "@/src/styles/addPackage/styles";
 import { useTheme } from "@/src/theme/themeProvider";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -12,6 +18,9 @@ import {
   TextInput,
   View,
 } from "react-native";
+import Toast from "react-native-toast-message";
+
+type Status = "in_transit" | "delivered" | "out_for_delivery";
 
 export default function AddPackage() {
   const { theme } = useTheme();
@@ -20,12 +29,54 @@ export default function AddPackage() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 
-  function handleAdd() {
+  function mapStatus(detalhe: string): Status {
+    const det = detalhe.toLowerCase();
+
+    if (det.includes("entregue")) return "delivered";
+    if (det.includes("saiu para entrega")) return "out_for_delivery";
+
+    return "in_transit";
+  }
+
+  function mapTrackingToPackage(
+    response: TrackingResponse,
+    nickname: string,
+  ): Package {
+    return {
+      id: Date.now().toString(),
+      code: response.codigo,
+      nickname,
+      status: mapStatus(response.eventoMaisRecente.detalhe),
+      local: response.eventoMaisRecente.local,
+      date: response.eventoMaisRecente.data,
+      description: response.eventoMaisRecente.descricao,
+    };
+  }
+
+  async function handleAdd() {
     setLoading(true);
-    console.log({ code, name });
-    setName("");
-    setCode("");
-    setLoading(false);
+    try {
+      const response = await getTracking(code);
+      const newPackage = mapTrackingToPackage(response, name);
+      await packageStorage.savePackage(newPackage);
+      setName("");
+      setCode("");
+      setLoading(false);
+      router.back();
+    } catch (error: any) {
+      console.log(error);
+
+      const message =
+        error.response?.data?.message || "Erro ao rastrear pacote.";
+
+      Toast.show({
+        type: "error",
+        text1: message,
+      });
+      setCode("");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (

@@ -4,28 +4,31 @@ import FloatButton from "@/src/components/floatButton";
 import Header from "@/src/components/header";
 import ModalPackage from "@/src/components/modalPackage";
 import PackageCard from "@/src/components/packageCard";
-import { mockPackages } from "@/src/services/mock/mock";
 import { Package } from "@/src/services/packageModel/packageModel";
+import { packageStorage } from "@/src/storage/packageStore";
 import { createStyles } from "@/src/styles/home/styles";
 import { useTheme } from "@/src/theme/themeProvider";
-import { router } from "expo-router";
-import { useState } from "react";
+import { router, useFocusEffect } from "expo-router";
+import { useCallback, useState } from "react";
 import { FlatList, View } from "react-native";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
+  const [packages, setPackages] = useState<Package[]>([]);
+  const [selectedPackages, setSelectedPackages] = useState<Package>();
   const { theme } = useTheme();
   const styles = createStyles(theme);
-  const packages = mockPackages;
-  const statusOrder = {
-    out_for_delivery: 0,
-    in_transit: 1,
-    delivered: 2,
-  } as const;
-  const sortedPackages = [...packages].sort((a, b) => {
-    return statusOrder[a.status] - statusOrder[b.status];
-  });
+
+  useFocusEffect(
+    useCallback(() => {
+      async function handleGetPackages() {
+        const response = await packageStorage.getPackage();
+        setPackages(response);
+      }
+      handleGetPackages();
+    }, []),
+  );
+
   return (
     <>
       <View style={styles.container}>
@@ -38,7 +41,7 @@ export default function Home() {
         {packages.length > 0 ? (
           <FlatList
             showsVerticalScrollIndicator={false}
-            data={sortedPackages}
+            data={packages}
             keyExtractor={(item) => item.id}
             style={styles.packages}
             contentContainerStyle={styles.packageContent}
@@ -50,7 +53,7 @@ export default function Home() {
                 description={item.description}
                 onDetails={() => {
                   setShowModal(true);
-                  setSelectedPackage(item);
+                  setSelectedPackages(item);
                 }}
               />
             )}
@@ -61,12 +64,12 @@ export default function Home() {
         <ModalPackage
           visible={showModal}
           closeModal={() => setShowModal(false)}
-          title={selectedPackage?.nickname ?? "Sem nome."}
-          description={selectedPackage?.description ?? "Sem descrição."}
-          status={selectedPackage?.status ?? "in_transit"}
-          location={selectedPackage?.location ?? "Sem localização."}
-          date={selectedPackage?.date ?? "Sem data."}
-          code={selectedPackage?.code ?? "Sem código."}
+          title={selectedPackages?.nickname ?? "Sem nome."}
+          description={selectedPackages?.description ?? "Sem descrição."}
+          status={selectedPackages?.status ?? "in_transit"}
+          location={selectedPackages?.local ?? "Sem localização."}
+          date={selectedPackages?.date ?? "Sem data."}
+          code={selectedPackages?.code ?? "Sem código."}
         />
       </View>
     </>

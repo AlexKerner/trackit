@@ -2,16 +2,19 @@ import { AppText } from "@/src/components/appText";
 import EmptyState from "@/src/components/emptyState";
 import Header from "@/src/components/header";
 import RecentCard from "@/src/components/recentCard";
-import { mockPackages } from "@/src/services/mock/mock";
+import { Package } from "@/src/services/packageModel/packageModel";
+import { packageStorage } from "@/src/storage/packageStore";
 import { createStyles } from "@/src/styles/dashboard/styles";
 import { useTheme } from "@/src/theme/themeProvider";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useFocusEffect } from "expo-router";
+import { useCallback, useState } from "react";
 import { FlatList, View } from "react-native";
 
 export default function Dashboard() {
   const { theme } = useTheme();
   const styles = createStyles(theme);
-  const packages = mockPackages;
+  const [packages, setPackages] = useState<Package[]>([]);
 
   const statusStyle = {
     delivered: {
@@ -27,6 +30,16 @@ export default function Dashboard() {
       image: require("@/src/assets/out_for_delivery.png"),
     },
   } as const;
+
+  useFocusEffect(
+    useCallback(() => {
+      async function handleGetPackages() {
+        const response = await packageStorage.getPackage();
+        setPackages(response);
+      }
+      handleGetPackages();
+    }, []),
+  );
 
   return (
     <View style={styles.container}>
@@ -140,7 +153,7 @@ export default function Dashboard() {
                 ? statusStyle.delivered.image
                 : statusStyle.out_for_delivery.image
             }
-            locale={item.location}
+            locale={item.local}
             nickname={item.nickname || ""}
             date={item.date}
           />
