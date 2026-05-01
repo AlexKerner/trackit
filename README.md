@@ -108,12 +108,17 @@ O projeto foi desenvolvido com foco em:
 
 ## Demonstração
 
-![Demo](./assets/demo/trackIt.gif)
+<p>
+  <img src="./assets/demo/trackIt.gif" width="200"/>
+</p>
 
-![Rastrear](./assets/demo/print1.jpg)
-![Vazio](./assets/demo/print2.jpg)
-![Dashboard](./assets/demo/print3.jpg)
-![Cep](./assets/demo/print4.jpg)
+<p>
+  <img src="./assets/demo/print1.jpg" width="200"/>
+  <img src="./assets/demo/print2.jpg" width="200"/>
+  <img src="./assets/demo/print3.jpg" width="200"/>
+  <img src="./assets/demo/print4.jpg" width="200"/>
+</p>
+
 
 ---
 
