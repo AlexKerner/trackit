@@ -18,7 +18,7 @@ export default function SplashAnimated() {
           source={require("@/assets/icon/truck.json")}
           autoPlay
           loop
-          style={{ width: 150, height: 120, marginTop: -13, marginLeft: -45 }}
+          style={{ width: 150, height: 120, marginTop: -13, marginLeft: -35 }}
         />
       </View>
     </View>
