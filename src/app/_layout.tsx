@@ -1,3 +1,4 @@
+import SplashAnimated from "@/src/components/splashAnimated";
 import {
   Poppins_400Regular,
   Poppins_600SemiBold,
@@ -6,6 +7,7 @@ import {
 } from "@expo-google-fonts/poppins";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useEffect, useState } from "react";
 import { View } from "react-native";
 import Toast from "react-native-toast-message";
 import { ThemeProvider, useTheme } from "../theme/themeProvider";
@@ -39,10 +41,24 @@ export default function Layout() {
     Poppins_700Bold,
   });
 
+  const [showSplash, setShowSplash] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
   if (!fontsLoaded) {
     return null;
   }
-
+  if (showSplash) {
+    return (
+      <ThemeProvider>
+        <SplashAnimated />
+      </ThemeProvider>
+    );
+  }
   return (
     <ThemeProvider>
       <RootLayoutNav />
