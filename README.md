@@ -22,6 +22,22 @@ O projeto foi desenvolvido com foco em:
 
 ---
 
+## Demonstração
+
+<p>
+  <img src="./assets/demo/trackIt.gif" width="200"/>
+</p>
+
+<p>
+  <img src="./assets/demo/print1.jpg" width="200"/>
+  <img src="./assets/demo/print2.jpg" width="200"/>
+  <img src="./assets/demo/print3.jpg" width="200"/>
+  <img src="./assets/demo/print4.jpg" width="200"/>
+</p>
+
+
+---
+
 ## Tecnologias e bibliotecas
 
 ### Core
@@ -103,22 +119,6 @@ O projeto foi desenvolvido com foco em:
 3. Dados são transformados (mapper)
 4. Pacote é salvo localmente
 5. Home e Dashboard exibem os dados
-
----
-
-## Demonstração
-
-<p>
-  <img src="./assets/demo/trackIt.gif" width="200"/>
-</p>
-
-<p>
-  <img src="./assets/demo/print1.jpg" width="200"/>
-  <img src="./assets/demo/print2.jpg" width="200"/>
-  <img src="./assets/demo/print3.jpg" width="200"/>
-  <img src="./assets/demo/print4.jpg" width="200"/>
-</p>
-
 
 ---
 
