@@ -5,6 +5,7 @@ import { CepData } from "@/src/services/cepModel/cepModel";
 import { createStyles } from "@/src/styles/cep/styles";
 import { useTheme } from "@/src/theme/themeProvider";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as Clipboard from "expo-clipboard";
 import { useState } from "react";
 import {
   ActivityIndicator,
@@ -21,11 +22,10 @@ export default function Cep() {
   const [cepText, setCepText] = useState("");
   const [cep, setCep] = useState<CepData>();
   const [isLoading, setIsLoading] = useState(false);
+
   function formatCep(value: string) {
     const numbers = value.replace(/\D/g, "").slice(0, 8);
-
     if (numbers.length <= 5) return numbers;
-
     return `${numbers.slice(0, 5)}-${numbers.slice(5)}`;
   }
   async function handleSearchCep(code: string) {
@@ -34,13 +34,10 @@ export default function Cep() {
     try {
       const response = await getAddressByCep(code);
       console.log(response);
-
       setCep(response.data);
     } catch (error: any) {
       console.log(error);
-
       const message = error.response?.data?.message || "Erro ao buscar CEP";
-
       Toast.show({
         type: "error",
         text1: message,
@@ -50,6 +47,21 @@ export default function Cep() {
     } finally {
       setIsLoading(false);
     }
+  }
+  async function handleCopyAddress() {
+    if (!cep) return;
+
+    const parts = [
+      cep.logradouro || cep.nomeLogradouro,
+      cep.bairro,
+      `${cep.nomeMunicipio} - ${cep.uf}`,
+    ].filter(Boolean);
+    const address = parts.join(", ");
+    await Clipboard.setStringAsync(address);
+    Toast.show({
+      type: "success",
+      text1: "Endereço copiado!",
+    });
   }
   return (
     <View style={styles.container}>
@@ -129,7 +141,7 @@ export default function Cep() {
               </View>
             )}
 
-            <Pressable>
+            <Pressable onPress={handleCopyAddress}>
               <View style={styles.copy}>
                 <MaterialCommunityIcons
                   name="content-copy"
